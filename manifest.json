@@ -6,6 +6,7 @@
   "permissions": [
     "tabs",
     "contextMenus",
+    "downloads",
     "https://drive.google.com/*",
     "https://youtube.googleapis.com/*"
   ],

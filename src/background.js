@@ -3,7 +3,7 @@ chrome.runtime.onInstalled.addListener(function(){
   chrome.contextMenus.create({
     type: 'normal',
     id: 'download',
-    title: 'Download Current Video'
+    title: '(Google Drive) Download Current Video'
   })
 })
 
@@ -14,13 +14,23 @@ chrome.contextMenus.onClicked.addListener(function(item){
       currentWindow: true,
     }, ([activeTab]) => {
       chrome.tabs.sendMessage(activeTab.id, {
-        method: 'getVideoSrc'
-      }, ({videoSrc}) => {
-        chrome.tabs.sendMessage(activeTab.id, {
-          method: 'downloadVideoSrc',
-          videoSrc: videoSrc
-        })
+        method: 'downloadDriveVideo'
       })
     })
   }
+})
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  const { method } = message
+  console.log(`received message ${method} in background`)
+
+  if (method === 'download') {
+    const { url, filename } = message
+    chrome.downloads.download({
+      url: url,
+      filename: filename,
+    })
+  }
+
+  return true
 })
