@@ -3,7 +3,8 @@ chrome.runtime.onInstalled.addListener(function(){
   chrome.contextMenus.create({
     type: 'normal',
     id: 'download',
-    title: '(Google Drive) Download Current Video'
+    title: '(Google Drive) Download Current Video',
+    documentUrlPatterns: ['https://drive.google.com/*']
   })
 })
 
