@@ -27,9 +27,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   if (method === 'download') {
     const { url, filename } = message
+    const filename_ = filename.replace('/', '_')
     chrome.downloads.download({
       url: url,
-      filename: filename,
+      filename: filename_,
     })
   }
 
