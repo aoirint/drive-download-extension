@@ -4,7 +4,7 @@ chrome.runtime.onInstalled.addListener(function(){
     type: 'normal',
     id: 'download',
     title: '(Google Drive) Download Current Video',
-    documentUrlPatterns: ['https://drive.google.com/*']
+    documentUrlPatterns: ['https://drive.google.com/**']
   })
 })
 
